@@ -1,0 +1,17 @@
+# This is the redis pod
+apiVersion: v1
+kind: Pod
+metadata:
+  name: example01-data-tier
+  labels:
+    app: example01
+    tier: data
+spec:
+  containers:
+    - name: redis
+      image: "redis:latest"
+      imagePullPolicy: IfNotPresent
+      ports:
+        - containerPort: 6379
+          protocol: TCP
+

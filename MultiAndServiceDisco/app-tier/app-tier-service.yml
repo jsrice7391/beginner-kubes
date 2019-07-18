@@ -1,0 +1,14 @@
+# This is the service for the app tier
+apiVersion: v1
+kind: Service
+metadata:
+  name: example01-app-tier
+spec:
+  selector:
+    app: example01
+    tier: app
+  ports:
+  - name: server
+    protocol: TCP
+    port: 8080
+

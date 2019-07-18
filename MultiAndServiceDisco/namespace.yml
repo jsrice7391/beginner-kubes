@@ -1,0 +1,7 @@
+# This is the major namespace for the sample Application
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lesson201
+  labels:
+    name: lesson201
