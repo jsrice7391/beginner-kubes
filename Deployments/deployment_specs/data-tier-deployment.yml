@@ -1,0 +1,35 @@
+# This is the deployment spec for the data-tier 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example02-data-tier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example01
+  template:
+    metadata:
+      name: example01-data-tier
+      labels:
+        app: example01
+        tier: data
+    spec:
+      containers:
+        - name: redis
+          image: "redis:latest"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 6379
+              protocol: TCP
+          livenessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 5
+          readinessProbe:
+            exec:
+              command:
+                - redis-cli
+                - ping
+            initialDelaySeconds: 10
+

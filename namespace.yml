@@ -1,7 +1,0 @@
-kind: Namespace
-apiVersion: v1
-metadata:
-  name: lesson201
-  labels:
-    name: lesson201
-    

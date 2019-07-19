@@ -1,3 +1,4 @@
+# This will deploy an nginx web server
 apiVersion: v1
 kind: Pod
 metadata:
@@ -6,13 +7,8 @@ metadata:
     app: hello-world
 spec:
   containers:
-    - name: server
+    - name: web-server
       image: nginx:latest
-      resources:
-        limits:
-          memory: "128Mi"
-          cpu: "500m"
       ports:
-        - containerPort: 8080
+        - containerPort: 80
           protocol: TCP
-

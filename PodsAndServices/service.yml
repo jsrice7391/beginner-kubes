@@ -1,9 +1,10 @@
+# This is the service that will allow the nginx container to access the internal IP and then the interwebs.
 apiVersion: v1
 kind: Service
 metadata:
   name: hello-world
   labels:
-    app: hello-world
+   app: hello-world
 spec:
   selector:
     app: hello-world

@@ -1,0 +1,28 @@
+# These are the two counters and pollers
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example01-support-tier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example01-app
+  template:
+    metadata:
+      name: example01-support-tier
+      labels:
+        app: example01-app
+    spec:
+      containers:
+      - name: counter
+        image: slashdeploy/microservice-example:counter-v1
+        env:
+          - name: API_URL
+            value: "http://$(EXAMPLE01_APP_TIER_SERVICE_HOST):$(EXAMPLE01_APP_TIER_SERVICE_PORT_SERVER)"
+      - name: poller
+        image: slashdeploy/microservice-example:poller-v1
+        env:
+          - name: API_URL
+            value: "http://$(EXAMPLE01_APP_TIER_SERVICE_HOST):$(EXAMPLE01_APP_TIER_SERVICE_PORT_SERVER)"
+

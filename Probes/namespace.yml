@@ -1,0 +1,7 @@
+# This is the namespace for probes
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lesson203
+  labels:
+    name: lesson203

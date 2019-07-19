@@ -1,0 +1,42 @@
+# This is the server that takes the requests
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example02-app-tier
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: example01
+  template:
+    metadata:
+      name: example01-app-tier
+      labels:
+        app: example01
+        tier: app
+    spec:
+      containers:
+        - name: server
+          image: "slashdeploy/microservice-example:server-v1"
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+          env:
+            - name: "REDIS_URL"
+              value: "redis://$(EXAMPLE01_DATA_TIER_SERVICE_HOST):$(EXAMPLE01_DATA_TIER_SERVICE_PORT_REDIS)"
+            - name: DEBUG
+              value: "express:*"
+          resources:
+            requests:
+              cpu: "100m"
+          livenessProbe:
+            httpGet:
+              path: /probe/liveness
+              port: 8080
+            initialDelaySeconds: 5
+          readinessProbe:
+            httpGet:
+              path: /probe/readiness
+              port: 8080
+            initialDelaySeconds: 10
+

@@ -1,0 +1,2 @@
+## Pods and Services
+Pods are a collection of individual containers running within kubernetes. They are defined within a yml file that specifies the containers that will be runnung within the pod itself. 
