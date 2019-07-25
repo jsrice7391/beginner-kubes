@@ -1,14 +1,28 @@
 # This will deploy an nginx web server
+# apiVersion: v1
+# kind: Pod
+# metadata:
+#   name: slackbot
+#   labels:
+#     app: 
+# spec:
+#   containers:
+#     - name: web-server
+#       image: nginx:latest
+#       ports:
+#         - containerPort: 4000
+#           protocol: TCP
+---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: hello-world
+  name: slackbot
   labels:
-    app: hello-world
+    app: slackbot
 spec:
   containers:
     - name: web-server
-      image: nginx:latest
+      image: slackbot
       ports:
-        - containerPort: 80
+        - containerPort: 4000
           protocol: TCP
